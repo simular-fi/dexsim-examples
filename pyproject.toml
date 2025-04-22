@@ -3,8 +3,8 @@ requires = ["hatchling==1.26.3"]
 build-backend = "hatchling.build"
 
 [project]
-name = "dexsim-examples"
-version = "0.1.0"
+name = "examples"
+version = "0.2.0"
 description = 'Examples'
 readme = "README.md"
 requires-python = ">=3.11"
@@ -29,23 +29,16 @@ classifiers = [
 ]
 
 dependencies = [
-  "dexsim",
+  "dexsim>=0.2.0",
   "mesa>=3.0.0",
   "tqdm",
   "pandas",
-  "omegaconf",
-  "pyarrow",
-  "matplotlib>=3.8.2",
-  "streamlit",
+  "numpy",
+  "matplotlib",
 ]
+
 [tool.hatch.metadata]
 allow-direct-references = true
-
-[tool.hatch.envs.default]
-dependencies = ["pytest"]
-
-[tool.hatch.envs.default.scripts]
-test = "pytest {args:tests}"
 
 [[tool.hatch.envs.all.matrix]]
 python = ["3.11", "3.12"]

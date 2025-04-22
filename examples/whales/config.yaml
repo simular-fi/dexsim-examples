@@ -1,34 +1,17 @@
 simulator:
-  random_seed: 1234
-
-  # Do not change. Only valid Uniswap v3 fee range
-  fees:
-    - 0.01
-    - 0.05
-    - 0.30
-    - 1.0
-
   pools:
-    dia_usdc:
-      tokens:
-        0: "dai"
-        1: "usdc"
-      fee: ${simulator.fees[1]} # 0.05 fee
-      price: 1.0
+    usdc_dai_100: [1.0, 1.0]
 
   model:
     steps: 500
-    output:
-      save: false
-      trading: "./data/trading.parquet"
-      liquidity: "./data/liquidity.parquet"
+    random_seed: 1234
 
   agents:
     minnow:
       num: 100
       fund:
-        dia: 10_000
         usdc: 10_000
+        dai: 10_000
       diff_factor: 0.01
       swap_amount: 100
       hodl_swap_probability: 0.5
@@ -36,17 +19,17 @@ simulator:
     whale:
       num: 3
       fund:
-        dia: 1_000_000
         usdc: 1_000_000
-      dump: 15_000
+        dai: 1_000_000
+      dump: 5_000
 
     lp:
       num: 10
       fund:
-        dia: 10_000
+        dai: 10_000
         usdc: 10_000
       initial_position:
-        dia: 1000
+        dai: 1000
         usdc: 1000
         range: [
           [0.97, 1.05],
@@ -55,7 +38,3 @@ simulator:
           [0.99, 1.03],
           [0.997, 1.01],
         ]
-      # randomly selected token value to increase liquidity
-      increase_range: [500, 1000]
-      # randomly selected percentage ranges to decrease liquidity
-      decrease_range: [5, 20]
